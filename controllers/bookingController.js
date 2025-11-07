@@ -53,7 +53,7 @@ exports.getAllBookings = async (req, res) => {
   try {
     const bookings = await Booking.find()
       .populate("userId", "name email phone")
-      .populate("carId", "brand model pricePerDay");
+      .populate("carId", "brand model pricePerDay image");
     res.json({
       success: true,
       count: bookings.length,
