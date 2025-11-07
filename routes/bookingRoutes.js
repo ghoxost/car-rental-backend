@@ -8,6 +8,7 @@ const {
   cancelBooking,
 } = require("../controllers/bookingController");
 const { authenticateToken, isAdmin } = require("../middleware/authMiddleware");
+
 router.get("/my-bookings", authenticateToken, getMyBookings);
 router.post("/", authenticateToken, createBooking);
 router.get("/", authenticateToken, isAdmin, getAllBookings);
