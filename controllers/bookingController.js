@@ -2,6 +2,8 @@ const Booking = require("../models/Booking");
 const Car = require("../models/Car");
 
 exports.createBooking = async (req, res) => {
+  await connectDB();
+
   try {
     const { carId, startDate, endDate } = req.body;
 
@@ -50,6 +52,8 @@ exports.createBooking = async (req, res) => {
 };
 
 exports.getAllBookings = async (req, res) => {
+  await connectDB();
+
   try {
     const bookings = await Booking.find()
       .populate("userId", "name email phone")
@@ -68,6 +72,8 @@ exports.getAllBookings = async (req, res) => {
 };
 
 exports.getMyBookings = async (req, res) => {
+  await connectDB();
+
   try {
     const bookings = await Booking.find({ userId: req.user.id }).populate(
       "carId",
@@ -87,6 +93,8 @@ exports.getMyBookings = async (req, res) => {
 };
 
 exports.updateBookingStatus = async (req, res) => {
+  await connectDB();
+
   try {
     const { status } = req.body;
     const booking = await Booking.findByIdAndUpdate(
@@ -119,6 +127,8 @@ exports.updateBookingStatus = async (req, res) => {
 };
 
 exports.cancelBooking = async (req, res) => {
+  await connectDB();
+
   try {
     const booking = await Booking.findById(req.params.id);
 

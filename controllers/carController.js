@@ -1,6 +1,8 @@
 const Car = require("../models/Car");
 
 exports.getAllCars = async (req, res) => {
+  await connectDB();
+
   try {
     const { category, isAvailable, minPrice, maxPrice } = req.query;
     let filter = {};
@@ -28,6 +30,8 @@ exports.getAllCars = async (req, res) => {
 };
 
 exports.getCarById = async (req, res) => {
+  await connectDB();
+
   try {
     const car = await Car.findById(req.params.id);
     if (!car) {
@@ -50,6 +54,8 @@ exports.getCarById = async (req, res) => {
 };
 
 exports.createCar = async (req, res) => {
+  await connectDB();
+
   try {
     const car = new Car(req.body);
     await car.save();
@@ -66,6 +72,8 @@ exports.createCar = async (req, res) => {
 };
 
 exports.updateCar = async (req, res) => {
+  await connectDB();
+
   try {
     const car = await Car.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
@@ -90,6 +98,8 @@ exports.updateCar = async (req, res) => {
 };
 
 exports.deleteCar = async (req, res) => {
+  await connectDB();
+
   try {
     const car = await Car.findByIdAndDelete(req.params.id);
     if (!car) {

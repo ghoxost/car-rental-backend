@@ -1,6 +1,8 @@
 const User = require("../models/User");
 
 exports.getAllUsers = async (req, res) => {
+  await connectDB();
+
   try {
     const users = await User.find().select("-password");
     res.json({
