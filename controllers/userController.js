@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const connectDB = require("../config/db");
 
 exports.getAllUsers = async (req, res) => {
   await connectDB();
